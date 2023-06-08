@@ -11,4 +11,39 @@ services:
     volumes:
       - ./data/postgres:/var/lib/postgresql/data
     ports:
-      - "54323:5432"
+      - "6010:5432"
+
+# version: "3.9"
+
+# services:
+#   postgresql:
+#     image: postgres:12
+#     container_name: nawin-postgresql
+#     restart: always
+#     environment:
+#       POSTGRES_USER: postgres
+#       POSTGRES_PASSWORD: golang
+#       POSTGRES_DB: postgres
+#     volumes:
+#       - ./data/postgres:/var/lib/postgresql/data
+    # ports:
+    #   - "6010:5432"
+    networks:
+      - nawin-network
+
+  api:
+    image: 507076/nawin-api
+    container_name: nawin-api
+    restart: always
+    depends_on:
+      - postgresql
+    ports:
+      - 6011:8080
+    environment:
+      DATABASE_URL: "host=postgresql user=postgres password=golang dbname=postgres sslmode=disable"
+    networks:
+      - nawin-network
+
+networks:
+  nawin-network:
+     name: nawin-network

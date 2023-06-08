@@ -3,6 +3,7 @@ package main
 import (
 	"database/sql"
 	"fmt"
+	"os"
 
 	_ "github.com/lib/pq"
 )
@@ -20,7 +21,7 @@ type PostgresStore struct {
 }
 
 func NewPostgresStorage() (*PostgresStore, error) {
-	url := "user=postgres dbname=postgres password=golang port=54323 sslmode=disable"
+	url :=  os.Getenv("DATABASE_URL")
 	//"host=localhost user=peagolang password=supersecret dbname=peagolang port=54329 sslmode=disable"
 	db, err := sql.Open("postgres", url)
 	if err != nil {

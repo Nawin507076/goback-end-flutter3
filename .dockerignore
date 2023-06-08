@@ -1,0 +1,16 @@
+Dockerfile
+docker-compose.yml
+docker-compose-backend.yml
+docker-compose*.yml
+
+data
+exp
+
+.gitignore
+.git
+
+test-api.http
+# .env  ต้องใส่ jenkins ใช้
+
+.gitignore
+.git
