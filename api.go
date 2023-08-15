@@ -25,7 +25,7 @@ func NewAPIServer(listenAddr string, store storage) *APIServer {
 func (s *APIServer) Run() {
 	router := mux.NewRouter()
 
-	// router.HandleFunc("/login", makeHTTPHandleFunc(s.handleLoginn))
+	// router.HandleFunc("/login", makeHTTPHandlleFunc(s.handleLoginn))
 	router.HandleFunc("/api/account", makeHTTPHandleFunc(s.handleAccount))
 	router.HandleFunc("/api/account/{id}", (makeHTTPHandleFunc(s.handleGetAccountByID)))
 	log.Println("JSON API server running on port ", s.listenAddr)
