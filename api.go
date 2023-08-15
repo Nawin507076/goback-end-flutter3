@@ -87,6 +87,8 @@ func (s *APIServer) handleCreateAccount(w http.ResponseWriter, r *http.Request) 
 	return WriteJson(w, http.StatusOK, account)
 }
 
+
+
 func (s *APIServer) handleDeleteAccount(w http.ResponseWriter, r *http.Request) error {
 	id, err := getID(r)
 	if err != nil {
@@ -97,6 +99,8 @@ func (s *APIServer) handleDeleteAccount(w http.ResponseWriter, r *http.Request) 
 	}
 	return WriteJson(w, http.StatusOK, map[string]int{"deleted": id})
 }
+
+
 
 func WriteJson(w http.ResponseWriter, status int, v any) error {
 	w.Header().Add("Content-Type", "application/json")
@@ -118,6 +122,8 @@ func makeHTTPHandleFunc(f apiFunc) http.HandlerFunc {
 		}
 	}
 }
+
+
 
 func getID(r *http.Request) (int, error) {
 	idStr := mux.Vars(r)["id"]
